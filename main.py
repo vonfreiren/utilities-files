@@ -1,6 +1,7 @@
 from PIL import Image
 import os, sys
 import glob
+from delete_movies_files import delete
 
 filetype="jpg"
 filetype2="webp"
@@ -18,4 +19,8 @@ def resize():
             imResize.save(f+'.jpg', 'JPEG', quality=85)
         except:
             print(item+" cannot be saved")
-resize()
+#resize()
+
+delete()
+
+
