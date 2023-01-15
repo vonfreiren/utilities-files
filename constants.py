@@ -1,0 +1,2 @@
+## Terms series
+SEASON = "Season"
