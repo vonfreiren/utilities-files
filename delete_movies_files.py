@@ -1,33 +1,32 @@
-from PIL import Image
-import os, sys
 import glob
-
+import yaml
 
 def delete():
     import os
     txt_type = ".txt"
     jpg_type = ".jpg"
-    srt_type = ".url"
     url_type = ".url"
     nfo_type = ".nfo"
     png_type = ".png"
+    jpeg_type = ".jpeg"
+
+    formats_to_be_deleted = [txt_type, jpg_type, url_type, nfo_type, png_type, jpeg_type]
 
 
+    with open('config.yaml') as f:
+        data = yaml.load(f, Loader=yaml.FullLoader)
+
+    path = data['dir_name_delete_movies_files']
+    path = path + "/**"
 
 
-    dir_name = "/Volumes/My Passport for Mac/Calibre Library/**"
-    #dir_name = "/Volumes/My Passport for Mac/Kindle/**"
-    #dir_name = "/Volumes/My Passport for Mac/Courses/**"
-    dir_name = "/Volumes/My Passport for Mac/Series/**"
-
-
-    files = glob.glob(dir_name, recursive=True)
+    files = glob.glob(path, recursive=True)
 
 
     for item in files:
-        if item.endswith(txt_type) or item.endswith(jpg_type) or item.endswith(srt_type) or item.endswith(url_type) or item.endswith(nfo_type) or item.endswith(png_type):
-            print(item)
-            os.remove(os.path.join(dir_name, item))
+        if any(item.endswith(format) for format in formats_to_be_deleted):
+            os.remove(os.path.join(path, item))
+            print("Removed: " + item)
 
 
 delete()
