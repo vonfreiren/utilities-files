@@ -5,7 +5,7 @@ import yaml
 
 
 
-def resize(width=1920, height=1080, quality=90, input_format='jpg', output_format="JPEG"):
+def resize(width=1920, height=1220, quality=90, input_format='jpeg', output_format="JPEG"):
     with open('config.yaml') as f:
         data = yaml.load(f, Loader=yaml.FullLoader)
 
@@ -22,7 +22,10 @@ def resize(width=1920, height=1080, quality=90, input_format='jpg', output_forma
             imResize.save(f +'.jpg', output_format, quality=quality)
         except:
             print(item+" cannot be saved")
-resize(width=1920, height=1080, quality=90, input_format='jpg', output_format="JPEG")
+
+
+
+resize(width=1920, height=1220, quality=90, input_format='jpeg', output_format="JPEG")
 
 
 
